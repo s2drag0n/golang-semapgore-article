@@ -18,3 +18,25 @@ blocks:
             - cache restore
             - go mod vendor
             - cache store
+  - name: Test
+    task:
+      prologue:
+        commands:
+          - semi-version go 1.21
+          - export GO111MODULE=on
+          - export GOPATH=~/go
+          - 'export PATH=/home/semaphore/go/bin:$PATH'
+          - checkout
+          - cache restore
+          - go mod vendor
+      jobs:
+        - name: Tset
+          commands:
+            - go test ./...
+  - name: Build
+    task:
+      jobs:
+        - name: Build
+          commands:
+            - go build -v -o go-gin-app
+            - artifact push project --force go-gin-app
