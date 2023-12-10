@@ -30,7 +30,7 @@ blocks:
           - cache restore
           - go mod vendor
       jobs:
-        - name: Tset
+        - name: Test
           commands:
             - go test ./...
   - name: Build
