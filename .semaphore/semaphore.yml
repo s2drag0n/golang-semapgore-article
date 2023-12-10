@@ -38,7 +38,7 @@ blocks:
       jobs:
         - name: Build
           commands:
-            - go build -v . -o go-gin-app
+            - go build -v -o go-gin-app
             - artifact push project --force go-gin-app
       prologue:
         commands:
